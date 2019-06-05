@@ -1,6 +1,6 @@
 var express = require("express");
 var path = require("path");
-
+var api = require('./routing/apiRoutes');
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -12,13 +12,18 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-
-
-
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 app.get("/welcome", function (req, res) {
   res.sendFile(path.join(__dirname, "welcome.html"));
 });
+
+app.use('/api/stuff', api);
+
+
+
 
 
 // var students = [{
@@ -42,10 +47,6 @@ app.get("/welcome", function (req, res) {
 app.use("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
-
-
-
-require('/routing/apiRoutes.js')(app);
 
 
 
