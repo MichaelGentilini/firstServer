@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <title>Title</title>
+</head>
+<div class="container text-center">
+  <h1>add some info here and let's see if it works!</h1>
+</div>
+
+<body>
+  <div class="container">
+    <form method="post" role="form" id="form">
+      <div class="form-group">
+        <h6 class="question">Name (required)</h6>
+        <input type="text" id="name" name="name" class="form-control" required="">
+      </div>
+
+      <div class="form-group">
+        <h6 class="question">Role (required)</h6>
+        <input type="text" id="role" name="role" class="form-control" required="">
+      </div>
+
+      <div class="form-group">
+        <h6 class="question">Skills (required)</h6>
+        <input type="text" id="skills" name="skills" class="form-control" required="">
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary mt-2" id="submit" type="button" method="post"> Submit
+        </button>
+    </form>
+  </div>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
+  <script>
+    $('#submit').on('click', function (e) {
+      e.preventDefault();
+      var newStudent = {
+        name: $('#name').val().trim(),
+        role: $('#role').val().trim(),
+        skills: $('#skills').val().trim()
+      };
+
+      $.post('api/stuff', newStudent)
+        .then(function (char) {
+          console.log("added" + char);
+          console.log('thanks for adding a student');
+          // alert('something happened');
+          clearForm();
+        });
+
+    })
+
+    function clearForm() {
+      $('#name').val(' ');
+      $('#role').val(' ');
+      $('#skills').val(' ');
+    }
+  </script>
+</body>
+
+</html>
